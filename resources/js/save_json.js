@@ -8,8 +8,13 @@ $('#json-form').on('submit',function(e){
     let method = $('#type').val();
     let json = $('#json').val();
 
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
     $.ajax({
-      url: "/api/save-json",
+      url: "save-json",
       type: method,
       headers: {
         "Authorization": "Bearer " + token

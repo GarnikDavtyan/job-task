@@ -2164,6 +2164,7 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./save_json */ "./resources/js/save_json.js");
+__webpack_require__(/*! ./update_json */ "./resources/js/update_json.js");
 
 /***/ }),
 
@@ -2218,8 +2219,13 @@ $('#json-form').on('submit', function (e) {
   var token = $('#token').val();
   var method = $('#type').val();
   var json = $('#json').val();
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
   $.ajax({
-    url: "/api/save-json",
+    url: "save-json",
     type: method,
     headers: {
       "Authorization": "Bearer " + token
@@ -2235,6 +2241,50 @@ $('#json-form').on('submit', function (e) {
     },
     complete: function complete() {
       $('#response-container').show();
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/update_json.js":
+/*!*************************************!*\
+  !*** ./resources/js/update_json.js ***!
+  \*************************************/
+/***/ (() => {
+
+$('#update-json-form').on('submit', function (e) {
+  e.preventDefault();
+  $('#response-container-update').hide();
+  $('#json-response-update').empty();
+  $('#error-message-update').empty();
+  var token = $('#token-update').val();
+  var method = $('#type-update').val();
+  var id = $('#id-update').val();
+  var code = $('#code-update').val();
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.ajax({
+    url: "update-json",
+    type: method,
+    headers: {
+      "Authorization": "Bearer " + token
+    },
+    data: {
+      id: id,
+      code: code
+    },
+    success: function success(response) {
+      $('#json-response-update').html("<div>JSON updated successfully</div>\n          <div>Updated JSON: ".concat(response.data, "</div>"));
+    },
+    error: function error(response) {
+      $('#error-message-update').text(response.responseJSON.message);
+    },
+    complete: function complete() {
+      $('#response-container-update').show();
     }
   });
 });

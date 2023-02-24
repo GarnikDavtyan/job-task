@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,6 +19,12 @@ class UsersSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@laravel.com',
             'password' => Hash::make('admin123'),
+        ]);
+
+        User::create([
+            'name' => 'User',
+            'email' => 'user@laravel.com',
+            'password' => Hash::make('user123'),
         ]);
     }
 }
