@@ -2165,6 +2165,7 @@ module.exports = {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./save_json */ "./resources/js/save_json.js");
 __webpack_require__(/*! ./update_json */ "./resources/js/update_json.js");
+__webpack_require__(/*! ./expand_json */ "./resources/js/expand_json.js");
 
 /***/ }),
 
@@ -2205,6 +2206,33 @@ window.$ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.
 
 /***/ }),
 
+/***/ "./resources/js/expand_json.js":
+/*!*************************************!*\
+  !*** ./resources/js/expand_json.js ***!
+  \*************************************/
+/***/ (() => {
+
+$(document).ready(function () {
+  $('.toggle').click(function () {
+    var toggle = $(this);
+    var jsonObject = toggle.next('.json-object');
+    var isExpanded = jsonObject.hasClass('expanded');
+    if (isExpanded) {
+      jsonObject.removeClass('expanded');
+      jsonObject.addClass('collapsed');
+      $(this).html('+');
+      jsonObject.hide();
+    } else {
+      jsonObject.addClass('expanded');
+      jsonObject.removeClass('collapsed');
+      $(this).html('-');
+      jsonObject.show();
+    }
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/save_json.js":
 /*!***********************************!*\
   !*** ./resources/js/save_json.js ***!
@@ -2225,7 +2253,7 @@ $('#json-form').on('submit', function (e) {
     }
   });
   $.ajax({
-    url: "save-json",
+    url: "store",
     type: method,
     headers: {
       "Authorization": "Bearer " + token
@@ -2268,7 +2296,7 @@ $('#update-json-form').on('submit', function (e) {
     }
   });
   $.ajax({
-    url: "update-json",
+    url: "update",
     type: method,
     headers: {
       "Authorization": "Bearer " + token

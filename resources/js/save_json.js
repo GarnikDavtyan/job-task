@@ -14,7 +14,7 @@ $('#json-form').on('submit',function(e){
       }
     });
     $.ajax({
-      url: "save-json",
+      url: "store",
       type: method,
       headers: {
         "Authorization": "Bearer " + token

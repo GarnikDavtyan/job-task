@@ -18,20 +18,3 @@
 .json-object {
     display: none;
 }
-.buttons {
-    display: flex;
-}
-a {
-    margin-right: 10px;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-table th,
-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-}
-
-

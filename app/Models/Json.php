@@ -13,4 +13,9 @@ class Json extends Model
         'user_id',
         'json'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

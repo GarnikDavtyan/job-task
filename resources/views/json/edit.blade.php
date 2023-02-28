@@ -1,4 +1,4 @@
-@extends('app')
+@extends('../app')
 @section('content')
     <form id="update-json-form">
         Token: <input id="token-update" name="token"/><br><br>

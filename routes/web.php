@@ -15,16 +15,15 @@ use App\Http\Controllers\JsonController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return to_route('jsons.index');
 });
 
-Route::get('/save-json-view', function () {
-    return view('save_json');
+Route::controller(JsonController::class)->group(function () {
+    Route::get('jsons/edit', 'edit')->name('jsons.edit');
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::middleware(['performance'])->match(['GET', 'POST'], 'jsons/store', 'store');
+        Route::match(['GET', 'POST'], 'jsons/update', 'update');
+    });
 });
 
-Route::get('/update-json-view', function () {
-    return view('update_json');
-});
-
-Route::middleware(['auth:sanctum', 'performance'])->match(['GET', 'POST'], 'save-json', [JsonController::class, 'createJson']);
-Route::middleware(['auth:sanctum'])->match(['GET', 'POST'], 'update-json', [JsonController::class, 'updateJson']);
+Route::resource('jsons', JsonController::class)->except(['edit', 'store', 'update']);

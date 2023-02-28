@@ -1,4 +1,4 @@
-@extends('app')
+@extends('../app')
 @section('content')
     <form id="json-form">
         Token: <input id="token" name="token"/><br><br>

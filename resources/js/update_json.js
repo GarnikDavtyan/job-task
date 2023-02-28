@@ -15,7 +15,7 @@ $('#update-json-form').on('submit',function(e){
       }
     });
     $.ajax({
-      url: "update-json",
+      url: "update",
       type: method,
       headers: {
         "Authorization": "Bearer " + token

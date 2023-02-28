@@ -7,4 +7,5 @@
         @yield('content')
     </body>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </html>
