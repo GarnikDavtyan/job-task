@@ -17,7 +17,7 @@ class UpdateJsonRequest extends FormRequest
             'id' => 'required|integer',
             'code' => [
                 'required',
-                'regex:/^(\$data(->\w+)+)(\[\d+\])*(->\w+|\[\w+\])*\s*=\s*([\w\W]*)$/'
+                'regex:/^(\$data((->\w+)(\[\d+\])*)+\s*=\s*([\w\W]*))$/'
             ]
         ];
     }
