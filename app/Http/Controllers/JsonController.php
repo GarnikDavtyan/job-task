@@ -124,7 +124,7 @@ class JsonController extends Controller
                 Split $property like 'c[0][1]' 
                 into $property = 'c' and $indexes = [0, 1]
             */
-            $pattern = '/^([^\[]+)((?:\[\d+\])+)$/';
+            $pattern = '/^(\w+)((\[\d+\])+)$/';
             preg_match($pattern, $property, $matches);
             if (count($matches)) {
                 $property = $matches[1];
