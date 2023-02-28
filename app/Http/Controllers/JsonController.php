@@ -105,7 +105,7 @@ class JsonController extends Controller
         
         //Check if $assignableValue is valid and convert it into actual type by json_decode
         $assignableValue = json_decode($assignableValueString);
-        if ($assignableValueString !== 'null' && $assignableValue === null) {
+        if (strtolower($assignableValueString) !== 'null' && is_null($assignableValue)) {
             return response()->json(['message' => 'The assignable value is not valid'], 422);
         }
         //Remove '$data->' part

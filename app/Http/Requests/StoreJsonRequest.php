@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\JsonObject;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreJsonRequest extends FormRequest
@@ -14,7 +15,7 @@ class StoreJsonRequest extends FormRequest
     public function rules()
     {
         return [
-            'json' => 'required|json'
+            'json' => ['required', new JsonObject]
         ];
     }
 }
