@@ -66,7 +66,7 @@ class JsonController extends Controller
     public function show($id)
     {
         $json = Json::findOrFail($id)->json;
-        $json = json_decode($json, true);
+        $json = json_decode($json);
         
         return view('json.show', compact('json'));
     }
